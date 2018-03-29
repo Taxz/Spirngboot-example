@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace 必须对应映射的Dao-->
+<mapper namespace="edu.example.study.dao.PersonDao">
+    <resultMap id="resultMap" type="edu.example.study.entity.person">
+        <result column="id" property="id"/>
+        <result column="age" property="age"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <parameterMap id="Person" type="edu.example.study.entity.person"/>
+
+    <sql id="list">
+        id,age,name
+    </sql>
+
+    <select id="findPersonById" resultMap="resultMap" parameterType="java.lang.Integer">
+        SELECT
+          <include refid="list"/>
+        FROM person
+        WHERE id = #{id}
+    </select>
+
+    <insert id="savePerson" parameterMap="Person" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        person(id,age,name)
+        VALUES (#{id},#{age},#{name})
+    </insert>
+
+    <update id="updatePerson" parameterMap="Person">
+        UPDATE person
+        SET
+        <if test="age!=null">
+            age = #{age},
+        </if>
+        /*注意最后一个if判断后，不能加逗号*/
+        <if test="name!=null">
+            name = #{name}
+        </if>
+        WHERE
+        id = #{id}
+    </update>
+    
+    <delete id="delPerson" parameterType="java.lang.Integer">
+        DELETE FROM
+        person
+        WHERE id = #{id}
+    </delete>
+</mapper>
