@@ -3,11 +3,14 @@ package edu.example.study.service.impl;
 import edu.example.study.dao.PersonDao;
 import edu.example.study.entity.person;
 import edu.example.study.service.PersonService;
+import edu.example.study.utill.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -78,5 +81,20 @@ public class PersonServiceImpl implements PersonService {
             redisTemplate.delete(key);
         }
         return ids;
+    }
+
+    @Override
+    public List<person> queryByown(String sql) {
+        return personDao.queryByown(sql);
+    }
+
+    @Override
+    public List<Map> excuteSql(Map map) {
+        return personDao.excuteSql(map);
+    }
+
+    @Override
+    public List<person> queryPage(Page page) {
+        return personDao.queryPage(page);
     }
 }
