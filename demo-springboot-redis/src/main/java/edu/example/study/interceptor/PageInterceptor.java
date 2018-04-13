@@ -18,6 +18,7 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
+import org.springframework.data.repository.Repository;
 
 /**
  * Created by Taxz on 2018/4/3.

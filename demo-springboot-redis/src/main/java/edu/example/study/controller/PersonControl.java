@@ -57,6 +57,7 @@ public class PersonControl {
         Map map = new HashMap<String,String>();
         map.put("sql",sql);
         map.put("age",pagarm);
+        sql = "select count(0) from ("+sql+")";
         List<Map> maps = personService.excuteSql(map);
         return maps.toString();
     }

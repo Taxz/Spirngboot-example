@@ -1,6 +1,8 @@
 package edu.example.study.entity;
 
 
+import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +14,6 @@ import java.io.Serializable;
  */
 @Entity
 public class User implements Serializable {
-
     private static final long serialVersionUID = 3820001366797412105L;
 
     @Id
