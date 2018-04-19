@@ -48,6 +48,7 @@
         id = #{id}
     </update>
     
+    
     <delete id="delPerson" parameterType="java.lang.Integer">
         DELETE FROM
         person

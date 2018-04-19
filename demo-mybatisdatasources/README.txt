@@ -1,0 +1,9 @@
+1.自定义类继承AbstractRoutingDataSource
+		重写determineCurrentLookupKey方法，以实现获取数据源的key；
+2.定义配置类实现多数据源配置
+		用@Primary指定默认数据源，
+		配置数据源的所有节点，
+		将数据源添加到SqlSessionFactoryBean中，
+		配置事务
+3.定义切面
+		实现对满足规则的查询切换数据源，
