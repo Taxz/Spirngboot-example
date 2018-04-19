@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace 必须对应映射的Dao-->
+<mapper namespace="edu.example.study.mapper.ProductDao">
+    <resultMap id="resultMap" type="edu.example.study.entity.Product">
+        <result column="id" property="id"/>
+        <result column="price" property="price"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <select id="select" resultMap="resultMap" parameterType="edu.example.study.entity.Product">
+        SELECT * from product WHERE id = #{id}
+    </select>
+
+    <select id="getAllProduct" resultMap="resultMap" >
+        SELECT * from product
+    </select>
+    <insert id="insert" parameterType="edu.example.study.entity.Product">
+        INSERT INTO product(name,price) VALUES (#{name},#{price});
+    </insert>
+
+    <update id="update" parameterType="edu.example.study.entity.Product">
+        UPDATE product SET name = #{name}, price = #{price} WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM product WHERE id = #{id}
+    </delete>
+</mapper>
