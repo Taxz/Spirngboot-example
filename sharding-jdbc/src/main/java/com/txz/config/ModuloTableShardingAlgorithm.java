@@ -9,6 +9,8 @@ import java.util.LinkedHashSet;
 
 /**
  * Created by Taxz on 2018/12/25.
+ *
+ *分表配置,通过选择 以获得的除余结尾的表名，实现分表
  */
 
 public class ModuloTableShardingAlgorithm implements SingleKeyTableShardingAlgorithm<Long> {

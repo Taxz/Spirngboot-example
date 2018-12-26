@@ -9,6 +9,8 @@ import java.util.LinkedHashSet;
 
 /**
  * Created by Taxz on 2018/12/25.
+ *
+ * 分库配置,通过选择 以获得的除余结尾的数据源名，实现分库
  */
 
 public class ModuloDatabaseShardingAlgorithm implements SingleKeyDatabaseShardingAlgorithm<Long> {
