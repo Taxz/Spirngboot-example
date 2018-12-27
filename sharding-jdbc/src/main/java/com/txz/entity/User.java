@@ -1,6 +1,6 @@
 package com.txz.entity;
 
-import com.txz.enums.UserSexEnum;
+import com.txz.enums.SexEnum;
 import lombok.Data;
 
 /**
@@ -8,14 +8,14 @@ import lombok.Data;
  */
 
 @Data
-public class UserEntity {
+public class User {
     private static final long serialVersionUID = 1L;
     private Long id;
     private Long order_id;
     private Long user_id;
     private String userName;
     private String passWord;
-    private UserSexEnum userSex;
+    private SexEnum userSex;
     private String nickName;
 
 }

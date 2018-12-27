@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.txz.mapper.User1Mapper" >
-    <resultMap id="BaseResultMap" type="com.txz.entity.UserEntity" >
+<mapper namespace="com.txz.mapper.BaseMapper" >
+    <resultMap id="userResultMap" type="com.txz.entity.User" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="order_id" property="order_id" jdbcType="BIGINT" />
         <result column="user_id" property="user_id" jdbcType="BIGINT" />
         <result column="userName" property="userName" jdbcType="VARCHAR" />
         <result column="passWord" property="passWord" jdbcType="VARCHAR" />
-        <result column="user_sex" property="userSex" javaType="com.txz.enums.UserSexEnum"/>
+        <result column="user_sex" property="userSex" javaType="com.txz.enums.SexEnum"/>
         <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
     </resultMap>
 
@@ -15,18 +15,34 @@
         id, userName, passWord, user_sex, nick_name,order_id,user_id
     </sql>
 
-    <select id="getAll" resultMap="BaseResultMap"  >
+    <select id="getAll" resultMap="userResultMap"  >
         SELECT
         <include refid="Base_Column_List" />
+        FROM t_user
+    </select>
+    <select id="getOrders" resultType="com.txz.entity.Order">
+        SELECT *
         FROM t_order
     </select>
+    <select id="getDetails" resultType="java.util.Map">
+        SELECT
+          u.userName name,u.user_sex sex,u.nick_name nick,t.productName product,t.number num,t.price price,t.address adr
+        FROM t_order t INNER JOIN t_user u ON t.order_id = u.order_id
+    </select>
 
-    <insert id="update" parameterType="com.txz.entity.UserEntity" >
+    <insert id="save" parameterType="com.txz.entity.User" >
         INSERT INTO
-        t_order
+        t_user
         (order_id,user_id,userName,passWord,user_sex,nick_name)
         VALUES
         (#{order_id},#{user_id},#{userName}, #{passWord}, #{userSex},#{nickName})
+    </insert>
+    <insert id="add" parameterType="com.txz.entity.Order">
+        INSERT INTO
+        t_order
+        (order_id,user_id,productName,`number`,price,address)
+        VALUES
+        (#{orderId},#{userId},#{product},#{number},#{price},#{address})
     </insert>
 
 </mapper>

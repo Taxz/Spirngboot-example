@@ -85,13 +85,18 @@ public class DataSourceConfig {
                 .tableShardingStrategy(new TableShardingStrategy("order_id", new ModuloTableShardingAlgorithm()))
                 .dataSourceRule(dataSourceRule)
                 .build();
+        TableRule userTableRule = TableRule.builder("t_user")
+                .actualTables(Arrays.asList("t_user_0", "t_user_1"))
+                .tableShardingStrategy(new TableShardingStrategy("order_id", new ModuloTableShardingAlgorithm()))
+                .dataSourceRule(dataSourceRule)
+                .build();
 
         //绑定表策略，在查询时会使用主表策略计算路由的数据源，因此需要约定绑定表策略的表的规则需要一致，可以一定程度提高效率
         List<BindingTableRule> bindingTableRules = new ArrayList<BindingTableRule>();
-        bindingTableRules.add(new BindingTableRule(Arrays.asList(orderTableRule)));
+        bindingTableRules.add(new BindingTableRule(Arrays.asList(orderTableRule,userTableRule)));
         return ShardingRule.builder()
                 .dataSourceRule(dataSourceRule)
-                .tableRules(Arrays.asList(orderTableRule))
+                .tableRules(Arrays.asList(orderTableRule,userTableRule))
                 .bindingTableRules(bindingTableRules)
                 .databaseShardingStrategy(new DatabaseShardingStrategy("user_id", new ModuloDatabaseShardingAlgorithm()))
                 .tableShardingStrategy(new TableShardingStrategy("order_id", new ModuloTableShardingAlgorithm()))
@@ -107,7 +112,12 @@ public class DataSourceConfig {
      */
     @Bean(name = "dataSource")
     public DataSource shardingDataSource(ShardingRule shardingRule) throws SQLException {
-        return ShardingDataSourceFactory.createDataSource(shardingRule);
+       //开启sql显示
+        Properties properties = new Properties();
+        properties.put("sql.show", "true");
+        DataSource dataSource = ShardingDataSourceFactory.createDataSource(shardingRule,properties);
+
+        return dataSource;
     }
 
     /**
