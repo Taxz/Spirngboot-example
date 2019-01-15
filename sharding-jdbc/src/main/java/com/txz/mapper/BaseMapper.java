@@ -9,9 +9,6 @@ import com.txz.entity.User;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Kane on 2018/1/17.
- */
 public interface BaseMapper {
 
     List<User> getAll();
