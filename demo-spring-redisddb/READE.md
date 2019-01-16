@@ -48,3 +48,6 @@
 			<version>3.10.0</version>
 		</dependency>
 ```
+[redis 实现分布式锁示例](https://github.com/Taxz/Spirngboot-example/blob/master/demo-spring-redisddb/src/main/java/edu/example/study/utill/RedisLock.java)
+
+[redisson实现分布式锁示例](https://github.com/Taxz/Spirngboot-example/blob/master/demo-spring-redisddb/src/main/java/edu/example/study/utill/RedissonLock.java)
