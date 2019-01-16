@@ -14,7 +14,7 @@
 
 ##### [demo-spring-redisddb](https://github.com/Taxz/Spirngboot-example/tree/master/demo-spring-redisddb) 
 
-​	分析了几种分布式锁的实现方式的优劣，及redisson分布式锁的使用
+​	分析了几种分布式锁的实现方式的优劣，及redisson分布式锁的使用，[说明文档](https://github.com/Taxz/Spirngboot-example/blob/master/demo-spring-redisddb/READE.md)。
 
 ##### [demo-springboot-redis](https://github.com/Taxz/Spirngboot-example/tree/master/demo-springboot-redis) 
 
